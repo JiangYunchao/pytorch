@@ -1,0 +1,16 @@
+import numpy as np
+import os.path
+import scipy.spatial.distance as sd
+import config_uni_512_500000
+import encoder_manager
+
+VOCAB_FILE = "./file_pattern/vocab.txt"
+EMBEDDING_MATRIX_FILE = "exp_vocab/embeddings.npy"
+CHECKPOINT_PATH = "train_dir/uni_512_2400_500000/model.ckpt-500000"
+encoder = encoder_manager.EncoderManager()
+encoder.load_model(config_uni_512_500000.model_config(),
+                   vocabulary_file=VOCAB_FILE,
+                   embedding_matrix_file=EMBEDDING_MATRIX_FILE,
+                   checkpoint_path=CHECKPOINT_PATH)
+data = [""]
+encodings = encoder.encode(data)
